@@ -2,11 +2,11 @@
 class Libro:
 
     # Metodo Constructor
-    def __init__(self, titulo, autor, paginas):
+    def __init__(self, titulo, autor, isbn):
         self.id = id
         self.titulo = titulo
         self.autor = autor
-        self.isbn= isbn
+        self.isbn = isbn
         self.disponible = True
 
     # Mostrar en la pantalla la informacion de un libro
