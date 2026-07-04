@@ -1,5 +1,7 @@
 from dao.libro_dao import LibroDAO
 from models.libro import Libro
+from dao.usuario_dao import UsuarioDAO
+from models.usuario import Usuario
 
 def ver_todo(libro_dao):
     try:
@@ -26,7 +28,7 @@ def insertar_libro(libro_dao):
         autor = int(input("Escibre el id del autor: "))
         isbn = input("Escribe el ISBN del libro: ")
         disponible = True
-        nuevoLibro = Libro(8,titulo,autor,disponible)
+        nuevoLibro = Libro(8,titulo,autor,isbn,disponible)
         libro_dao.insertar(nuevoLibro)
     except Exception as e:
         print(f"Error al insertar libro: {e}")
@@ -38,7 +40,7 @@ def actualizar_libro(libro_dao):
     titulo = input("Escribe el nuevo titulo del libro: ")
     autor = input("Escribe el nuevo id del autor: ")
     isbn = input("Escribe el nuevo isbn del libro: ")
-    disponible = bool(input("Escribe si el libro esta disponible o no"))
+    disponible = bool(input("Escribe si el libro esta disponible o no: "))
     libro = Libro(id, titulo, autor, isbn, disponible)
     libro_dao.actualizar(libro)
 
@@ -49,8 +51,7 @@ def eliminar_libro(libro_dao):
     print("Libros Disponibles")
     ver_todo(libro_dao)
 
-def main():
-    print("=== Biblioteca Universitaria ==")
+def menu_libros():
     libro_dao = LibroDAO()
 
     # Imprime el menú de opciones
@@ -66,6 +67,37 @@ def main():
         case 2:insertar_libro(libro_dao)
         case 3:actualizar_libro(libro_dao)
         case 4:eliminar_libro(libro_dao)
+
+
+
+def menu_usuarios():
+    usuario_dao = UsuarioDAO()
+
+    # Imprime el menú de opciones
+    print("1. Ver todos los usuarios")
+    print("2. Insertar nuevo usuario")
+    print("3. Actualizar un usuario existente")
+    print("4. Eliminar un usuario existente")
+
+    opcion = int(input("Escribe una opcion (1-4): "))
+
+    match opcion:
+        case 1:ver_usuarios(usuario_dao)
+        case 2:insertar_usuario(usuario_dao)
+        case 3:actualizar_usuario(usuario_dao)
+        case 4:eliminar_usuario(usuario_dao)
+
+def main():
+    print("=== Biblioteca Universitaria ==")
+    print("=== Menú de opciones ==")
+    print("1. Gestión de libros")
+    print("2. Gestión de usuarios")
+
+    opcion = int(input("Escribe tu opcion: "))
+
+    match opcion:
+        case 1: menu_libros()
+        case 2: menu_usuarios()
 
 if __name__ == "__main__":
     main()
