@@ -1,7 +1,6 @@
 from dao.libro_dao import LibroDAO
 from models.libro import Libro
-from dao.usuario_dao import UsuarioDAO
-from models.usuario import Usuario
+
 
 def ver_todo(libro_dao):
     try:
@@ -22,17 +21,17 @@ def ver_todo(libro_dao):
 
 def insertar_libro(libro_dao):
     try:
-        print("--------------------------------------")
+        print("------------------------------------")
         print("Inserción de un nuevo libro")
         titulo = input("Escribe el título del libro: ")
-        autor = int(input("Escibre el id del autor: "))
+        autor = int(input("Escribe el id del autor: "))
         isbn = input("Escribe el ISBN del libro: ")
         disponible = True
-        nuevoLibro = Libro(8,titulo,autor,isbn,disponible)
+        nuevoLibro = Libro(None, titulo, autor, isbn, disponible)
         libro_dao.insertar(nuevoLibro)
     except Exception as e:
         print(f"Error al insertar libro: {e}")
-
+1
 def actualizar_libro(libro_dao):
     ver_todo(libro_dao)
     id = int(input("Escribe el id del libro a editar: "))
@@ -40,7 +39,7 @@ def actualizar_libro(libro_dao):
     titulo = input("Escribe el nuevo titulo del libro: ")
     autor = input("Escribe el nuevo id del autor: ")
     isbn = input("Escribe el nuevo isbn del libro: ")
-    disponible = bool(input("Escribe si el libro esta disponible o no: "))
+    disponible = input("Escribe si el libro esta disponible o no (si/no): ").strip().lower() == "si"
     libro = Libro(id, titulo, autor, isbn, disponible)
     libro_dao.actualizar(libro)
 

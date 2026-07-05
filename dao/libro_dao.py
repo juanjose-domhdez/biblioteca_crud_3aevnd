@@ -38,13 +38,10 @@ class LibroDAO:
         conexion= Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        sql = (
-            "INSERT INTO libro(titulo, autor, isbn, disponible) "
-            "VALUES (%s, %s, %s, %s)"
-        )
+        sql = "INSERT INTO libro(titulo, autor, isbn, disponible) VALUES (%s, %s, %s, %s)"
 
-        cursor.execute(sql,(
-            libro.titulo, 
+        cursor.execute(sql, (
+            libro.titulo,
             libro.autor,
             libro.isbn,
             libro.disponible
