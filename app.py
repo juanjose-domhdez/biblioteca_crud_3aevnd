@@ -1,6 +1,7 @@
 from dao.libro_dao import LibroDAO
 from models.libro import Libro
-
+from dao.usuario_dao import UsuarioDAO
+from models.usuario import Usuario
 
 def ver_todo(libro_dao):
     try:
@@ -68,6 +69,51 @@ def menu_libros():
         case 4:eliminar_libro(libro_dao)
 
 
+def ver_usuarios(usuario_dao):
+    try:
+        usuarios = usuario_dao.obtener_usuarios()
+        print("Usuarios en la biblioteca")
+        if len(usuarios) == 0:
+            print("No hay usuarios registrados")
+        else:
+            for usuario in usuarios:
+                print(f"{usuario.id} - {usuario.nombre} - {usuario.matricula} - {usuario.carrera} - {usuario.correo} - {usuario.activo}")
+        print("\n Conexion exitosa a la base de datos")
+    except Exception as e:
+        print(f"Error al conectar a la base de datos: {e}")
+
+def insertar_usuario(usuario_dao):
+    try:
+        print("------------------------------------")
+        print("Inserción de un nuevo usuario")
+        nombre = input("Escribe el nombre del usuario: ")
+        matricula = input("Escribe la matrícula del usuario: ")
+        carrera = int(input("Escribe el id de la carrera: "))
+        correo = input("Escribe el correo del usuario: ")
+        activo = True
+        nuevoUsuario = Usuario(None, nombre, matricula, carrera, correo, activo)
+        usuario_dao.insertar(nuevoUsuario)
+    except Exception as e:
+        print(f"Error al insertar usuario: {e}")
+
+def actualizar_usuario(usuario_dao):
+    ver_usuarios(usuario_dao)
+    id = int(input("Escribe el id del usuario a editar: "))
+    print("Actualiza los datos de este usuario")
+    nombre = input("Escribe el nuevo nombre del usuario: ")
+    matricula = input("Escribe la nueva matrícula: ")
+    carrera = int(input("Escribe el nuevo id de la carrera: "))
+    correo = input("Escribe el nuevo correo: ")
+    activo = input("Escribe si el usuario esta activo o no (si/no): ").strip().lower() == "si"
+    usuario = Usuario(id, nombre, matricula, carrera, correo, activo)
+    usuario_dao.actualizar(usuario)
+
+def eliminar_usuario(usuario_dao):
+    ver_usuarios(usuario_dao)
+    id = int(input("Escribe el id del usuario a eliminar: "))
+    usuario_dao.eliminar(id)
+    print("Usuarios Disponibles")
+    ver_usuarios(usuario_dao)
 
 def menu_usuarios():
     usuario_dao = UsuarioDAO()

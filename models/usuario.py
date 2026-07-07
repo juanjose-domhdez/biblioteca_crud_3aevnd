@@ -4,11 +4,13 @@ from models.libro import Libro
 
 class Usuario:
     
-    def __init__ (self, matricula, nombre, carrera):
-        self.matricula = matricula
+    def __init__(self, id, nombre, matricula, carrera, correo, activo=True):
+        self.id = id
         self.nombre = nombre
+        self.matricula = matricula
         self.carrera = carrera
-        self.activo = True
+        self.correo = correo
+        self.activo = activo
 
     def activar(self):
         self.activo = True
