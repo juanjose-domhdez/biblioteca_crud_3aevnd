@@ -2,7 +2,7 @@ import flet as ft
 
 def main_window(page: ft.Page):
     # definir configuracion de la pagina principal
-    page.titulo = "Sistema de Gestion de Biblioteca"
+    page.title = "Sistema de Gestion de Biblioteca"
     page.window_width = 1100
     page.window_height = 700
     page.padding = 0
@@ -12,7 +12,8 @@ def main_window(page: ft.Page):
     titulo = ft.Text(
         "Sistema de Gestion de Biblioteca",
         size = 24,
-        weight = ft.Weight.BOLD 
+        weight = ft.FontWeight.BOLD ,
+        color = ft.Colors.BLUE_GREY_900
     )
 
     subtitulo = ft.Text(
@@ -38,13 +39,13 @@ def main_window(page: ft.Page):
     menu_lateral = ft.Container(
         width = 220,
         bgcolor = ft.Colors.BLUE_GREY_900,
-        padding=20,
+        padding = 20,
         content = ft.Column(
             controls = [
-                ft.text(
+                ft.Text(
                     "Biblioteca",
                     size = 22,
-                    weight = ft.FontWeigh.BOLD,
+                    weight = ft.FontWeight.BOLD,
                     color = ft.Colors.WHITE
                 ),
                 ft.Text(
@@ -55,22 +56,22 @@ def main_window(page: ft.Page):
                 ft.Divider(color = ft.Colors.BLUE_GREY_700),
                 # botones
                 ft.ElevatedButton(
-                    text = "Libros",
+                    "Libros",
                     icon = ft.Icons.BOOK,
                     width = 180
                 ),
                 ft.ElevatedButton(
-                    text = "Usuarios",
+                    "Usuarios",
                     icon = ft.Icons.PERSON,
                     width = 180
                 ),
                 ft.ElevatedButton(
-                    text = "Préstamos",
+                    "Préstamos",
                     icon = ft.Icons.SWAP_HORIZ,
                     width = 180
                 ), 
                 ft.ElevatedButton(
-                    text = "Devoluciones",
+                    "Devoluciones",
                     icon = ft.Icons.KEYBOARD_RETURN,
                     width = 180
                 ),                                               
