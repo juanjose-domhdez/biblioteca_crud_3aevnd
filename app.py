@@ -1,3 +1,6 @@
+import flet as ft
+
+from ui.main_window import main_window
 from dao.libro_dao import LibroDAO
 from models.libro import Libro
 from dao.usuario_dao import UsuarioDAO
@@ -132,17 +135,18 @@ def menu_usuarios():
         case 3:actualizar_usuario(usuario_dao)
         case 4:eliminar_usuario(usuario_dao)
 
-def main():
-    print("=== Biblioteca Universitaria ==")
-    print("=== Menú de opciones ==")
-    print("1. Gestión de libros")
-    print("2. Gestión de usuarios")
+ft.app(target = main_window)
+# def main():
+#     print("=== Biblioteca Universitaria ==")
+#     print("=== Menú de opciones ==")
+#     print("1. Gestión de libros")
+#     print("2. Gestión de usuarios")
 
-    opcion = int(input("Escribe tu opcion: "))
+#     opcion = int(input("Escribe tu opcion: "))
 
-    match opcion:
-        case 1: menu_libros()
-        case 2: menu_usuarios()
+#     match opcion:
+#         case 1: menu_libros()
+#         case 2: menu_usuarios()
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
